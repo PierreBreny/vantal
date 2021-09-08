@@ -12,8 +12,10 @@ router.get('/', ensureAuthenticated, (req, res) => {
     });
 })
 //new profile page
-router.get('/new', (req,res) => {
-    res.render('newProfile');
+router.get('/new', ensureAuthenticated, (req,res) => {
+    res.render('newProfile', {
+        user: req.user
+    });
 })
 
 // Create new profile
