@@ -5,18 +5,20 @@ const User = require("../models/user");
 const {ensureAuthenticated} = require('../config/auth'); 
 const { update } = require('../models/profile');
 
-//profile page
+// Profile page
 router.get('/', ensureAuthenticated, (req, res) => {
     res.render('profile', {
         user: req.user
     });
 })
-//new profile page
+
+// Create new profile
 router.get('/new', ensureAuthenticated, (req,res) => {
     res.render('newProfile', {
         user: req.user
     });
 })
+
 
 // Create new profile
 router.post('/new',async (req,res) => {
@@ -31,6 +33,18 @@ router.post('/new',async (req,res) => {
         res.redirect('/profiles/new');
     }
 })
+
+// Delete Profile
+router.get('/delete', ensureAuthenticated, async (req, res) => {
+    try {
+        await User.findOneAndUpdate({_id: req.user._id},{profile: null});
+        // await User.save()
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.log(error);
+        res.redirect('/dashboard');
+    }
+  })
 
 
 module.exports = router; 
