@@ -12,8 +12,7 @@ dotenv.config();
 require('./config/passport')(passport)
 
 // Mongoose
-// process.env.MONGO_URI
-mongoose.connect("mongodb+srv://vantal:vantal123@cluster0.eu4l9.mongodb.net/vantal?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology : true})
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology : true})
 .then(() => console.log("Succesfully connected to Mongo!"))
 .catch((err) => console.log(err));
 
