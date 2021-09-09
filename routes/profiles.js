@@ -35,6 +35,11 @@ router.post('/new',async (req,res) => {
 })
 
 // Delete Profile
+
+// Actually, this does not delete the profile; it still exists in the profile collection. 
+// But, I can then offer the opportunity to the user to recover his or her profile 
+// by pushing the existing profile (by id) to the corresponding user.
+
 router.get('/delete', ensureAuthenticated, async (req, res) => {
     try {
         await User.findOneAndUpdate({_id: req.user._id},{profile: null});
