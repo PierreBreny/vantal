@@ -1,0 +1,24 @@
+<body>
+    <h4>New listing</h4>
+    <br>
+    <h1>Create a new listing</h1>
+    <br>
+    <form action="/listings/new" method="POST">
+        <label for="listing_title">Title: </label>
+        <input id="listing_tile" type="text" name="listing_title" placeholder="Listing title">
+        <br>
+        <label for="listing_description">Description: </label><br>
+        <textarea placeholder="Help the user understand what your van is all about!" name="listing_description" id="listing_description" cols="30" rows="10"></textarea>
+        <br>
+        <label for="van_img">Upload a picture: </label>
+        <input id="van_img" type="file" value="van_img">
+        <br>
+        <div id="pricing">
+            <h3>Pricing</h3>
+            <label for="van_price">Base price: $</label>
+            <input type="number" id="van_price" name="van_price" min="10" max="100"><br>
+        </div>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+</body>

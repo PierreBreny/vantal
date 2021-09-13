@@ -18,7 +18,11 @@ const UserSchema  = new mongoose.Schema({
         type : Date,
         default : Date.now
     } ,
-    profile : ProfileSchema
+    profile : ProfileSchema,
+    // bookings: BookingSchema,
+    // listing: ListingSchema,
+    // cart: CartSchema
+
 });
 
 const User= mongoose.model('User', UserSchema);
