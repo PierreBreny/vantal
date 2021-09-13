@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const ProfileSchema = require('./profile').ProfileSchema;
+const ListingSchema = require('./listing').ListingSchema;
 
 const UserSchema  = new mongoose.Schema({
     name :{
@@ -19,10 +20,10 @@ const UserSchema  = new mongoose.Schema({
         default : Date.now
     } ,
     profile : ProfileSchema,
+    listings : ListingSchema
     // bookings: BookingSchema,
     // listing: ListingSchema,
     // cart: CartSchema
-
 });
 
 const User= mongoose.model('User', UserSchema);

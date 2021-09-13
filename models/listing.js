@@ -1,44 +1,20 @@
 const mongoose = require('mongoose');
 const ListingSchema  = new mongoose.Schema({
-    first_name :{
+    listing_title :{
         type  : String,
         required : true
     } ,
-    last_name :{
+    listing_description :{
         type  : String,
         required : true
     } ,
-    username :{
+    van_img :{
         type  : String,
-        required : true
+        required : false
     } ,
-    email :{
-        type  : String,
+    van_price :{
+        type  : Number,
         required : true
-    } ,
-    address :{
-        type  : String,
-        required : true
-    } ,
-    city :{
-        type  : String,
-        required : true
-    } ,
-    country :{
-        type  : String,
-        required : true
-    } ,
-    postal_code :{
-        type  : String,
-        required : true
-    } ,
-    about_user :{
-        type  : String,
-        required : true
-    } ,
-    date :{
-        type  : Date,
-        default : Date.now
     }
 });
 const Listing = mongoose.model('Listing',ListingSchema);

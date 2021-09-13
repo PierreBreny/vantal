@@ -3,7 +3,7 @@ const router  = express.Router();
 const Profile = require("../models/profile").Profile;
 const User = require("../models/user");
 const {ensureAuthenticated} = require('../config/auth'); 
-const { update } = require('../models/profile');
+// const { update } = require('../models/profile');
 
 // Profile page
 router.get('/', ensureAuthenticated, (req, res) => {
