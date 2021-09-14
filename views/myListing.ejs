@@ -1,0 +1,22 @@
+<body>
+    <h4>Listings</h4>
+    <br>
+
+    <% if(user.profile.listings.length < 1) { %>
+        <h1>You have no listing</h1>
+        <p>You have a van? Start renting it!</p>
+        <a href="/listings/new">Create a listing</a>
+    <% } else { %>
+        <h2>My listings</h2>
+
+    <% listings.listings.forEach((listings) => {  %> 
+        <h3><%= listings.listing_title %></h3>
+        <p><%= listings.listing_description %></p>
+        <p><b><%= listings.van_price %> euros a day</b></p>
+        <br>
+    <% }) %> 
+<a href="/listings/new">New listing</a>
+    <% } %> 
+
+    <a href="/dashboard">Bring me Home</a>
+</body>
