@@ -15,6 +15,10 @@ const ListingSchema  = new mongoose.Schema({
     van_price :{
         type  : Number,
         required : true
+    },
+    date: {
+        type : Date,
+        default : Date.now
     }
 });
 const Listing = mongoose.model('Listing',ListingSchema);

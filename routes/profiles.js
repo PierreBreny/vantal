@@ -23,7 +23,7 @@ router.get('/new', ensureAuthenticated, (req,res) => {
 // Create new profile
 router.post('/new',async (req,res) => {
     const newProfile = new Profile(req.body)
-    // 
+        // 
     try {
         await newProfile.save()
         await User.findOneAndUpdate({_id: req.user._id}, {profile: newProfile});
@@ -32,7 +32,10 @@ router.post('/new',async (req,res) => {
         console.log(error);
         res.redirect('/profiles/new');
     }
-})
+    })
+
+
+
 
 // Delete Profile
 
@@ -49,7 +52,7 @@ router.get('/delete', ensureAuthenticated, async (req, res) => {
         console.log(error);
         res.redirect('/dashboard');
     }
-  })
+})
 
 
 module.exports = router; 

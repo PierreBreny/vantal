@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ListingSchema } = require('./listing');
 const ProfileSchema  = new mongoose.Schema({
     first_name :{
         type  : String,
@@ -39,7 +40,13 @@ const ProfileSchema  = new mongoose.Schema({
     date :{
         type  : Date,
         default : Date.now
-    }
+    } ,
+    listings : [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Listing"
+        }
+    ]
 });
 const Profile = mongoose.model('Profile',ProfileSchema);
 

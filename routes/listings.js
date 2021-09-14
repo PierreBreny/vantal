@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Listing = require("../models/listing").Listing;
-const User = require("../models/user");
+const Profile = require("../models/profile").Profile;
 const {ensureAuthenticated} = require('../config/auth'); 
 
 // Listings dashboard -> If user has none, page is empty and button redirects to 'listings/new'
@@ -23,7 +23,7 @@ router.post('/new', ensureAuthenticated, async (req,res) => {
 
     try {
         await newListing.save()
-        await User.findOneAndUpdate({_id: req.user._id}, {listings: newListing});
+        await Profile.findOneAndUpdate({_id: req.user.profile._id}, {$push: {listings: newListing._id}})
         res.redirect('/listings/');
     } catch (error) {
         console.log(error);
