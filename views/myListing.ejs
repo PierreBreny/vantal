@@ -2,7 +2,7 @@
     <h4>Listings</h4>
     <br>
 
-    <% if(user.profile.listings.length < 0) { %>
+    <% if(listings.listings.length < 1) { %>
         <h1>You have no listing</h1>
         <p>You have a van? Start renting it!</p>
         <a href="/listings/new">Create a listing</a>
@@ -15,6 +15,7 @@
         <p><b><%= listings.van_price %> euros a day</b></p>
         <br>
     <% }) %> 
+
 <a href="/listings/new">New listing</a>
     <% } %> 
 
