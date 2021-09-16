@@ -42,16 +42,17 @@ const getProfileAndPopulate = function(id){
 
 const renderListings = async function (req, res){
     listings = await getProfileAndPopulate(req.user.profile._id)
-    console.log(listings)
+    console.log(listings.listings)
     res.render('myListing',{
         user: req.user,
         listings: listings
     });
 }
 
-//dashboard page with all listings rendered
 router.get('/',ensureAuthenticated,(req,res)=>{
     renderListings(req, res);
 })
+
+
 
 module.exports = router; 
