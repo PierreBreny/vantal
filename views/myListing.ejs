@@ -10,14 +10,16 @@
         <h2>My listings</h2>
 
     <% listings.listings.forEach((listings) => {  %> 
-        <h3><%= listings.listing_title %></h3>
-        <p><%= listings.listing_description %></p>
-        <p><b><%= listings.van_price %> euros a day</b></p>
+        <h3><%= listings.model.charAt(0).toUpperCase() + listings.model.slice(1) %> <%= listings.year %></h3>
+        <p><b><%= listings.city %></b></p>
+        <p><%= listings.description %></p>
+        <p><b><%= listings.van_price %>€/day</b></p>
+
         <br>
     <% }) %> 
 
 <a href="/listings/new">New listing</a>
     <% } %> 
 
-    <a href="/dashboard">Bring me Home</a>
+    <a href="/">Bring me Home</a>
 </body>

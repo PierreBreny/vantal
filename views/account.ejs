@@ -1,0 +1,12 @@
+<h3>Account</h3>
+<p><b><%= user.name %></b>, <%= user.email %></p> ·
+
+<% if (!user.profile) { %>
+    <a href="/profiles/new">Create a profile</a>
+<% } else {%>
+    <a href="/profiles/">Go to profile</a><br>
+    <a href="/bookings/">Trips</a>
+    <a href="/listings">Listings</a>
+<%  } %> 
+
+<a href="/users/logout">Logout</a>

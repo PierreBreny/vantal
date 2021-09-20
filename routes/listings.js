@@ -27,7 +27,7 @@ router.post('/new', ensureAuthenticated, async (req,res) => {
     try {
         await newListing.save()
         await Profile.findOneAndUpdate({_id: req.user.profile._id}, {$push: {listings: newListing._id}})
-        res.redirect('/dashboard/');
+        res.redirect('/listings');
     } catch (error) {
         console.log(error);
         res.redirect('/listings/new');

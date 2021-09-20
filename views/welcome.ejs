@@ -1,7 +1,34 @@
 <html>
-<h1>Welcome!</h1>
-<p>Create an account or login</p>
-<a href="/users/register" class="btn btn-primary btn-block mb-2"
-  >Register</a>
-<a href="/users/login"> Login</a>
+  <h3>Homepage</h3>
+  
+  <% if (req.user) {%>
+    <h1> Welcome <%= user.name %></h1>
+    <% if (!user.profile) { %>
+        <a href="/profiles/new">Create a profile</a>
+        <a href="/listings/new">Rent your van</a>
+    <% } else {%>
+        <a href="/listings/new">Rent your van</a>
+        <a href="/account/">Account</a>
+    <%  } %> 
+    
+    <a href="/users/logout">Logout</a>
+  <% } else { %> 
+    <h1>Homepage</h1>
+  
+  <a href="/listings/new">Rent your van</a>
+  <a href="/users/register" class="btn btn-primary btn-block mb-2"
+    >Sign up</a>
+  <a href="/users/login"> Login</a>
+  <br>
+  <% } %> 
+
+<p>Here the user can search for vans, even if not logged in.</p>
+
+<% listings.forEach((listings) => {  %> 
+  <h3><%= listings.model.charAt(0).toUpperCase() + listings.model.slice(1) %> <%= listings.year %></h3>
+  <p><b><%= listings.city %></b></p>
+  <p><%= listings.description %></p>
+  <p><b><%= listings.van_price %>€/day</b></p>
+  <br>
+<% }) %> 
 </html>

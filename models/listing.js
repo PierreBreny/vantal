@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 const ListingSchema  = new mongoose.Schema({
-    listing_title :{
+    model :{
         type  : String,
         required : true
     } ,
-    listing_description :{
+    year :{
+        type  : Number,
+        required : true
+    } ,
+    description :{
         type  : String,
         required : true
     } ,
@@ -16,9 +20,9 @@ const ListingSchema  = new mongoose.Schema({
         type  : Number,
         required : true
     },
-    date: {
-        type : Date,
-        default : Date.now
+    city: {
+        type : String,
+        required: true
     }
 });
 const Listing = mongoose.model('Listing',ListingSchema);
