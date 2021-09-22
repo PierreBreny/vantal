@@ -25,7 +25,7 @@
 <p>Here the user can search for vans, even if not logged in.</p>
 
 <div id="search_van">
-  <form action="/search" method="GET">
+  <form action="/search" method="POST">
     <div>
       <label for="city">Location: </label>
       <input id="city" type="text" name="city" placeholder="London">
@@ -52,10 +52,14 @@
 
 
 <% listings.forEach((listings) => {  %> 
-  <h3><%= listings.model.charAt(0).toUpperCase() + listings.model.slice(1) %> <%= listings.year %></h3>
-  <p><b><%= listings.city %></b></p>
-  <p><%= listings.description %></p>
-  <p><b><%= listings.van_price %>€/day</b></p>
-  <br>
+  <div>
+    <h3><%= listings.model.charAt(0).toUpperCase() + listings.model.slice(1) %> <%= listings.year %></h3>
+    <p><b><%= listings.city %></b></p>
+    <p><%= listings.description %></p>
+    <p><b><%= listings.van_price %>€/day</b></p>
+    <a href="/listings/<%= listings._id %>">More</a>
+    <br>
+  </div>
+  
 <% }) %> 
 </html>

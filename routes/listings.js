@@ -4,23 +4,14 @@ const Listing = require("../models/listing").Listing;
 const Profile = require("../models/profile").Profile;
 const {ensureAuthenticated} = require('../config/auth'); 
 
-// // User listings dashboard -> If user has none, page is empty and button redirects to 'listings/new'
-// router.get('/', ensureAuthenticated, (req,res) =>{
-//     res.render('myListing', {
-//         user: req.user,
-//         profile: req.user.profile
-//     });
-// })
-
-// Create new listing page
+// Form to create a new listing
 router.get('/new', ensureAuthenticated, (req,res) =>{
     res.render('newListing', {
         user: req.user
     });
 })
 
-
-//Create a new listing
+// Handle new listing creation
 router.post('/new', ensureAuthenticated, async (req,res) => {
     const newListing = new Listing(req.body)
 
@@ -31,12 +22,11 @@ router.post('/new', ensureAuthenticated, async (req,res) => {
     } catch (error) {
         console.log(error);
         res.redirect('/listings/new');
-        // "Vantastic!" must be displayed when a user list a van
+        // "Vantastic!" could be displayed when a user list a van
     }
 })
 
-
-// Display all listings
+// Display listings linked to a specific profile
 const getProfileAndPopulate = function(id){
     return Profile.findById(id).populate('listings')
 }
@@ -44,7 +34,7 @@ const getProfileAndPopulate = function(id){
 const renderListings = async function (req, res){
     listings = await getProfileAndPopulate(req.user.profile._id)
     console.log(listings.listings)
-    res.render('myListing',{
+    res.send('myListing',{
         user: req.user,
         listings: listings
     });
@@ -54,6 +44,13 @@ router.get('/',ensureAuthenticated,(req,res)=>{
     renderListings(req, res);
 })
 
+// GET listing by ID
+
+router.get('/:id', async (req,res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id)
+    res.render('listings/show', {listing})
+})
 
 
 module.exports = router; 
