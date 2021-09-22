@@ -6,6 +6,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport")
 const dotenv = require('dotenv');
+const methodOverride = require('method-override');
 dotenv.config();
 
 //passport config:
@@ -36,6 +37,9 @@ app.use((req,res,next)=> {
     res.locals.error  = req.flash('error');
     next();
     })
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
 
 //Routes
 app.use('/',require('./routes/index'));

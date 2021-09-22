@@ -52,11 +52,19 @@ router.get('/:id', async (req,res) => {
     res.render('listings/show', {listing})
 })
 
-// UPDATE listing by ID
+// UPDATE listing by ID form
 
-router.get('/edit/:id', (req,res) => {
-    res.render('listings/edit')
+router.get('/:id/edit', async (req,res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id)
+    res.render('listings/edit', {listing})
 })
 
+// UPDATE listing
+router.put('/:id', async (req,res) => {
+    const { id } = req.params;
+    const listing = await Listing.findByIdAndUpdate(id, req.body, { runValidators: true, new: true})
+    res.redirect(`/listings/${listing._id}`);
+})
 
 module.exports = router; 
