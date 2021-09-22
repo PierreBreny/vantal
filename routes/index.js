@@ -18,7 +18,7 @@ router.get('/', (req,res) => {
 })
 //register page
 router.get('/register', (req,res)=>{
-    res.render('register');
+    res.render('users/register');
 })
 
 //dashboard page with all listings rendered
@@ -33,7 +33,7 @@ router.get('/dashboard',ensureAuthenticated,(req,res)=>{
 
 //account page with all user info
 router.get('/account',ensureAuthenticated,(req,res)=>{
-    res.render('account',{
+    res.render('users/account',{
         user: req.user,
     });;
 })

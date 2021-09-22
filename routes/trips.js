@@ -14,7 +14,7 @@ const {ensureAuthenticated} = require('../config/auth');
 
 // Create new trip page
 router.get('/new', ensureAuthenticated, (req,res) =>{
-    res.render('newTrip', {
+    res.render('trips/newTrip', {
         user: req.user
     });
 })
@@ -44,7 +44,7 @@ const getProfileAndPopulate = function(id){
 const renderTrips = async function (req, res){
     trips = await getProfileAndPopulate(req.user.profile._id)
     console.log(trips.trips)
-    res.render('myTrip',{
+    res.render('trips/myTrip',{
         user: req.user,
         trip: trips
     });

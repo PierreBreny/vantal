@@ -6,7 +6,7 @@ const {ensureAuthenticated} = require('../config/auth');
 
 // Form to create a new listing
 router.get('/new', ensureAuthenticated, (req,res) =>{
-    res.render('newListing', {
+    res.render('listings/newListing', {
         user: req.user
     });
 })
@@ -18,10 +18,10 @@ router.post('/new', ensureAuthenticated, async (req,res) => {
     try {
         await newListing.save()
         await Profile.findOneAndUpdate({_id: req.user.profile._id}, {$push: {listings: newListing._id}})
-        res.redirect('/listings');
+        res.redirect(`/listings/${newListing._id}`);
     } catch (error) {
         console.log(error);
-        res.redirect('/listings/new');
+        res.redirect(`/listings/${newListing._id}`);
         // "Vantastic!" could be displayed when a user list a van
     }
 })
@@ -34,7 +34,7 @@ const getProfileAndPopulate = function(id){
 const renderListings = async function (req, res){
     listings = await getProfileAndPopulate(req.user.profile._id)
     console.log(listings.listings)
-    res.send('myListing',{
+    res.render('listings/myListings',{
         user: req.user,
         listings: listings
     });
@@ -50,6 +50,12 @@ router.get('/:id', async (req,res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id)
     res.render('listings/show', {listing})
+})
+
+// UPDATE listing by ID
+
+router.get('/edit/:id', (req,res) => {
+    res.render('listings/edit')
 })
 
 
