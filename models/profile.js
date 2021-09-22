@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const { ListingSchema } = require('./listing');
+const { TripSchema } = require('./trip');
+
 const ProfileSchema  = new mongoose.Schema({
     first_name :{
         type  : String,
@@ -45,6 +47,12 @@ const ProfileSchema  = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Listing"
+        }
+    ],
+    trips : [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Trip"
         }
     ]
 });

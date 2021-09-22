@@ -42,6 +42,8 @@ app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
 app.use('/profiles',require('./routes/profiles'));
 app.use('/listings',require('./routes/listings'));
+app.use('/trips',require('./routes/trips'));
+app.use('/search',require('./routes/search'));
 
 app.listen(process.env.PORT || 8080, () => {
     console.log("Listening on 8080");

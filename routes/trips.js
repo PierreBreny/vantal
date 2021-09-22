@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const Listing = require("../models/listing").Listing;
+const Trip = require("../models/trip").Trip;
 const Profile = require("../models/profile").Profile;
 const {ensureAuthenticated} = require('../config/auth'); 
 
@@ -12,46 +12,46 @@ const {ensureAuthenticated} = require('../config/auth');
 //     });
 // })
 
-// Create new listing page
+// Create new trip page
 router.get('/new', ensureAuthenticated, (req,res) =>{
-    res.render('newListing', {
+    res.render('newTrip', {
         user: req.user
     });
 })
 
 
-//Create a new listing
+//Create a new trip
 router.post('/new', ensureAuthenticated, async (req,res) => {
-    const newListing = new Listing(req.body)
+    const newTrip = new Trip(req.body)
 
     try {
-        await newListing.save()
-        await Profile.findOneAndUpdate({_id: req.user.profile._id}, {$push: {listings: newListing._id}})
-        res.redirect('/listings');
+        await newTrip.save()
+        await Profile.findOneAndUpdate({_id: req.user.profile._id}, {$push: {trips: newTrip._id}})
+        res.redirect('/trips');
     } catch (error) {
         console.log(error);
-        res.redirect('/listings/new');
-        // "Vantastic!" must be displayed when a user list a van
+        res.redirect('/trips/new');
+        // "Vantastic!" must be displayed when a user book a van
     }
 })
 
 
-// Display all listings
+// Display all trips
 const getProfileAndPopulate = function(id){
-    return Profile.findById(id).populate('listings')
+    return Profile.findById(id).populate('trips')
 }
 
-const renderListings = async function (req, res){
-    listings = await getProfileAndPopulate(req.user.profile._id)
-    console.log(listings.listings)
-    res.render('myListing',{
+const renderTrips = async function (req, res){
+    trips = await getProfileAndPopulate(req.user.profile._id)
+    console.log(trips.trips)
+    res.render('myTrip',{
         user: req.user,
-        listings: listings
+        trip: trips
     });
 }
 
 router.get('/',ensureAuthenticated,(req,res)=>{
-    renderListings(req, res);
+    renderTrips(req, res);
 })
 
 

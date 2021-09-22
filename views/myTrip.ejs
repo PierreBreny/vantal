@@ -1,0 +1,25 @@
+<body>
+    <h4>Trips</h4>
+    <br>
+
+    <% if(trips.trips.length < 1) { %>
+        <h1>You have no trip</h1>
+        <p>Plan your first trip!</p>
+        <a href="/trips/new">Book a van</a>
+    <% } else { %>
+        <h2>Vantastic, your van is waiting for you!</h2>
+
+    <% trips.trips.forEach((trips) => {  %> 
+        <h3><%= trips.listing %></h3>
+        <p><b><%= trips.city %></b></p>
+        <p><%= trips.start_date %> - <%= trips.end_date %></p>
+        <p><b><%= trips.price %>€/day</b></p>
+
+        <br>
+    <% }) %> 
+
+<a href="/trips/new">New trip</a>
+    <% } %> 
+
+    <a href="/">Bring me Home</a>
+</body>
