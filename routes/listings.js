@@ -3,19 +3,6 @@ const router  = express.Router();
 const Listing = require("../models/listing").Listing;
 const Profile = require("../models/profile").Profile;
 const {ensureAuthenticated} = require('../config/auth');
-const models = require("car-models");
-const cities = require('all-the-cities');
-
-// How to use all-the-cities
-// cities.filter(city => city.name.match('Albuquerque'));
-
-//How to use car-models
-// .all() returns all models Array<string>
-
-router.get('/models', async (req,res) => {
-    const allModels = await models.all();
-    res.render('models', { allModels });
-})
 
 // Form to create a new listing
 router.get('/new', ensureAuthenticated, (req,res) =>{

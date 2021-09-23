@@ -16,6 +16,8 @@ router.get('/', (req,res) => {
         })
     })
 })
+
+
 //register page
 router.get('/register', (req,res)=>{
     res.render('users/register');
