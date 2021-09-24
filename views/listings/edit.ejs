@@ -44,6 +44,9 @@
         <br>
         <button>Save</button>
     </form>
+    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
 <a href="/">Cancel</a>
 </body>
 </html>

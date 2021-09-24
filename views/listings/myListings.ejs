@@ -15,6 +15,9 @@
         <p><%= listings.description %></p>
         <p><b><%= listings.van_price %>€/day</b></p>
         <a href="/listings/<%= listings._id %>/edit">Edit</a>
+        <form action="/listings/<%= listings._id %>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
 
         <br>
     <% }) %> 

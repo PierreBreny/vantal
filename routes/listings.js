@@ -72,4 +72,10 @@ router.put('/:id', async (req,res) => {
 
 // DELETE Listing
 
+router.delete('/:id', ensureAuthenticated, async (req,res) => {
+    const { id } = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect('/listings/');
+    })
+
 module.exports = router; 

@@ -15,5 +15,8 @@
     <a href="/listings/<%= listing._id %>/edit">Edit</a>
     <a href="/listings">All listings</a>
     <a href="/">Bring me Home</a>
+    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+    <button>Delete</button>
+    </form>
 </body>
 </html>
