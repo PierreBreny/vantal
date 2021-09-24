@@ -67,7 +67,7 @@ router.get('/:id/edit', async (req,res) => {
 router.put('/:id', async (req,res) => {
     const { id } = req.params;
     const listing = await Listing.findByIdAndUpdate(id, req.body, { runValidators: true, new: true})
-    res.redirect(`/listings/${listing._id}`);
+    res.redirect('/listings/');
 })
 
 // DELETE Listing
