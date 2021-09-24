@@ -37,7 +37,6 @@ const getProfileAndPopulate = function(id){
 
 const renderListings = async function (req, res){
     listings = await getProfileAndPopulate(req.user.profile._id)
-    console.log(listings.listings)
     res.render('listings/myListings',{
         user: req.user,
         listings: listings
