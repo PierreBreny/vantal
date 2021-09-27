@@ -55,5 +55,37 @@ router.get('/',ensureAuthenticated,(req,res)=>{
 })
 
 
+// UPDATE trip by ID form
+
+router.get('/:id/edit', async (req,res) => {
+    const { id } = req.params;
+    const trip = await Trip.findById(id)
+    res.render('trips/edit', {trip})
+})
+
+// UPDATE listing
+router.put('/:id', async (req,res) => {
+    const { id } = req.params;
+    await Trip.findByIdAndUpdate(id, req.body, { runValidators: true, new: true})
+    res.redirect('/trips/');
+})
+
+
+// Get a trip by ID
+
+router.get('/:id', async (req,res) => {
+    const { id } = req.params;
+    const trip = await Trip.findById(id)
+    res.render('trips/show', {trip})
+})
+
+// Delete a trip
+
+router.delete('/:id', ensureAuthenticated, async (req,res) => {
+    const { id } = req.params;
+    await Trip.findByIdAndDelete(id);
+    res.redirect('/trips/');
+    })
+
 
 module.exports = router; 

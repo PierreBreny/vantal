@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <h4>Edit listing</h4>
+    <br>
+    <h1>Edit</h1>
+    <br>
+    <p>Don't forget to save when you're done.</p><br>
+    <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+<a href="/">Cancel</a>
+</body>
+</html>

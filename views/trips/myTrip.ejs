@@ -14,7 +14,11 @@
         <p><b><%= trips.city %></b></p>
         <p><%= trips.start_date %> - <%= trips.end_date %></p>
         <p><b><%= trips.price %>€/day</b></p>
-
+        <a href="/trips/<%= trips._id %>/edit">Edit</a>
+        <a href="/trips/<%= trips._id %>">More</a>
+        <form action="/trips/<%= trips._id %>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
         <br>
     <% }) %> 
 
