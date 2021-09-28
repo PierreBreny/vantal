@@ -5,7 +5,7 @@ const Listing = require('../models/listing').Listing;
 const Profile = require("../models/profile").Profile;
 
 
-// function to render welcome with listings AND login option
+// Homepage with listings
 
 router.get('/', (req,res) => {
     Listing.find({}, (err, listings) => {
@@ -17,6 +17,28 @@ router.get('/', (req,res) => {
     })
 })
 
+// Search endpoint
+router.get('/search', async (req,res) => {
+    try {
+        let result = await Listing.aggregate([
+            {
+                "$search": {
+                    "autocomplete": {
+                        "query": `${req.query.term}`,
+                        "path": "city",
+                        "fuzzy": {
+                            "maxEdits": 2
+                        }
+                    }
+                }
+            }  
+        ]);
+        res.send(result);
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+})
+
 
 //register page
 router.get('/register', (req,res)=>{
@@ -25,13 +47,17 @@ router.get('/register', (req,res)=>{
 
 //dashboard page with all listings rendered
 
-
-router.get('/dashboard',ensureAuthenticated,(req,res)=>{
-    res.render('dashboard',{
-        user: req.user,
-        listings: listings
-    });
+router.get('/dashboard', ensureAuthenticated, (req,res) => {
+    Listing.find({}, (err, listings) => {
+        res.render('dashboard', {
+            req: req,
+            user: req.user,
+            listings: listings
+        })
+    })
 })
+
+
 
 //account page with all user info
 router.get('/account',ensureAuthenticated,(req,res)=>{

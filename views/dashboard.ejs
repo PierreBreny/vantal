@@ -1,12 +1,19 @@
 <h3>Dashboard</h3>
 <h1> Welcome <%= user.name %></h1>
-<% if (!user.profile) { %>
+<p>This is your dashboard. You can manage all your trips and listings from here.</p>
+<% if (!user.profile.listings) { %>
     <a href="/profiles/new">Create a profile</a>
 <% } else {%>
     <a href="/listings/new">Rent your van</a>
-    <a href="/listings/">Trips</a>
+    <a href="/listings/">Listings</a>
+    <a href="/trips/">Trips</a>
+
     <a href="/">Whishlist</a>
     <a href="/account/">Account</a>
 <%  } %> 
 
 <a href="/users/logout">Logout</a>
+
+<h1>Dashboard</h1>
+
+<p>In this page are displayed Trips and Rentals of User.</p>
