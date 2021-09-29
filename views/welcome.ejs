@@ -7,8 +7,6 @@
 <header>
   <%- include('./partials/header'); %>
 </header>
-
-  <h3>Homepage</h3>
   
   <% if (req.user) {%>
     <h1> Welcome <%= user.name %></h1>
@@ -29,26 +27,25 @@
   <a href="/users/login"> Login</a>
   <br>
   <% } %> 
+  <br>
 
-<div id="search_van">
-  <form action="/search" method="GET">
+<div class="container" id="search_van">
+  <form class="container" action="/search" method="GET">
     <div>
       <label for="city">Location: </label>
       <input id="city" type="text" name="city" placeholder="London">
     </div>
-    <div id="search_period">
-      <div id="search_start">
-        <label for="start_date">Pick up: </label>
-        <input id="start_date" type="date" name="start_date">
+    <div id="search_start">
+      <label for="start_date">Pick up: </label>
+      <input id="start_date" type="date" name="start_date">
         <!-- <label for="start_time"></label>
         <input id="start_time" type="time" name="start_time"> -->
-      </div>
-      <div id="search_end">
-        <label for="end_date">Drop off: </label>
-        <input id="end_date" type="date" name="end_date">
+    </div>
+    <div id="search_end">
+      <label for="end_date">Drop off: </label>
+      <input id="end_date" type="date" name="end_date">
         <!-- <label for="end_time"></label>
         <input id="end_time" type="time" name="end_time"> -->
-      </div>
     </div>
     <div>
       <button>Search</button>
