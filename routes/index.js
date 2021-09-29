@@ -5,15 +5,6 @@ const Listing = require('../models/listing').Listing;
 const Profile = require("../models/profile").Profile;
 const cron = require("node-cron");
 
-// cron provides a way to repeat a task at a specific time interval
-cron.schedule("* * * * *", function() {
-    // 1. check if listings are available:
-    // -> (write a function to see if today's date is between a listing start_date and end_date)
-    // 2. Add a Not available tag to the listings that are unavailable 
-    console.log("He asked me to say hi in the console, so.. Hi !");
-})
-
-
 // Homepage with listings
 
 router.get('/', (req,res) => {
@@ -33,7 +24,7 @@ router.get('/search', async (req,res) => {
             {
                 "$search": {
                     "autocomplete": {
-                        "query": `${req.query.term}`,
+                        "query": `${req.query.city}`,
                         "path": "city",
                         "fuzzy": {
                             "maxEdits": 2
@@ -42,7 +33,9 @@ router.get('/search', async (req,res) => {
                 }
             }  
         ]);
-        res.send(result);
+        res.render('search', {
+            result: result
+        });
     } catch (error) {
         res.status(500).send({ message: error.message })
     }

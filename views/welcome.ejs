@@ -1,4 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/css/welcome.css">
+  <title></title>
+</head>
+<body>
   <h3>Homepage</h3>
   
   <% if (req.user) {%>
@@ -25,7 +34,7 @@
 <p>Here the user can search for vans, even if not logged in.</p>
 
 <div id="search_van">
-  <form action="/search" method="POST">
+  <form action="/search" method="GET">
     <div>
       <label for="city">Location: </label>
       <input id="city" type="text" name="city" placeholder="London">
@@ -34,14 +43,14 @@
       <div id="search_start">
         <label for="start_date">Pick up: </label>
         <input id="start_date" type="date" name="start_date">
-        <label for="start_time"></label>
-        <input id="start_time" type="time" name="start_time">
+        <!-- <label for="start_time"></label>
+        <input id="start_time" type="time" name="start_time"> -->
       </div>
       <div id="search_end">
         <label for="end_date">Drop off: </label>
         <input id="end_date" type="date" name="end_date">
-        <label for="end_time"></label>
-        <input id="end_time" type="time" name="end_time">
+        <!-- <label for="end_time"></label>
+        <input id="end_time" type="time" name="end_time"> -->
       </div>
     </div>
     <div>
@@ -62,4 +71,5 @@
   </div>
   
 <% }) %> 
+</body>
 </html>

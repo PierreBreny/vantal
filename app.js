@@ -11,6 +11,9 @@ const methodOverride = require('method-override');
 
 dotenv.config();
 
+// Static files for css
+app.use("/static", express.static("public"));
+
 //passport config:
 require('./config/passport')(passport)
 
