@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/public/css/welcome.css">
-  <title></title>
+  <%- include('./partials/head'); %>
 </head>
 <body>
+<header>
+  <%- include('./partials/header'); %>
+</header>
+
   <h3>Homepage</h3>
   
   <% if (req.user) {%>
@@ -22,7 +22,6 @@
     
     <a href="/users/logout">Logout</a>
   <% } else { %> 
-    <h1>Homepage</h1>
   
   <a href="/listings/new">Rent your van</a>
   <a href="/users/register" class="btn btn-primary btn-block mb-2"
@@ -30,8 +29,6 @@
   <a href="/users/login"> Login</a>
   <br>
   <% } %> 
-
-<p>Here the user can search for vans, even if not logged in.</p>
 
 <div id="search_van">
   <form action="/search" method="GET">

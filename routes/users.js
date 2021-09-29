@@ -20,7 +20,7 @@ passport.authenticate('local',{
 })(req,res,next)
 })
   //register post handle
-  router.post('/register',(req,res)=>{
+    router.post('/register',(req,res)=>{
     const {name,email, password, password2} = req.body;
     let errors = [];
     console.log(' Name ' + name+ ' email :' + email+ ' pass:' + password);
@@ -43,14 +43,14 @@ passport.authenticate('local',{
         email : email,
         password : password,
         password2 : password2})
-     } else {
+        } else {
         //validation passed
-       User.findOne({email : email}).exec((err,user)=>{
+        User.findOne({email : email}).exec((err,user)=>{
         console.log(user);   
         if(user) {
             errors.push({msg: 'email already registered'});
             res.render('users/register',{errors,name,email,password,password2})  
-           } else {
+            } else {
             const newUser = new User({
                 name : name,
                 email : email,
@@ -72,11 +72,10 @@ passport.authenticate('local',{
                         res.redirect('/users/login');
                     })
                     .catch(value=> console.log(value));
-                      
                 }));
-             }
-       })
-    }
+            }
+        })
+        }
     })
 //logout
 router.get('/logout',(req,res)=>{
