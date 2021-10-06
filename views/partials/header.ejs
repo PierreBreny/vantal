@@ -1,11 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Vantal</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
-      </li>
-    </ul>
-  </nav>
+
+  <div class="topnav" id="myTopnav">
+      <a class="logo-img" href="/"><img id="logo" src="/static/vantal-final.png" alt=""></a>
+    <div id="options">
+      <a href="/listings/new">Rent your van</a>
+      <div class="dropdown">
+        <% if (req.user) {%>
+          <button class="dropbtn"><img id="no-user" src="static/user.png">
+          </button>
+        <div class="dropdown-content">
+          <a href="/account/">Account</a>
+          <a href="/users/logout">Logout</a>
+        </div>
+        <% } else { %>
+          <img class="dropbtn" id="no-user" src="static/user.png">
+          <div class="dropdown-content">
+            <a href="/users/register" class="btn btn-primary btn-block mb-2">Sign up</a>
+            <a href="/users/login"> Login</a>
+          </div>
+        <% } %> 
+      </div>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>

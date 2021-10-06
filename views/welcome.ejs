@@ -2,32 +2,14 @@
 <html lang="en">
 <head>
   <%- include('./partials/head'); %>
+  <script src="/static/scripts/welcome.js"></script>
 </head>
 <body>
-<header>
-  <%- include('./partials/header'); %>
-</header>
   
-  <% if (req.user) {%>
-    <h1> Welcome <%= user.name %></h1>
-    <% if (!user.profile) { %>
-        <a href="/profiles/new">Create a profile</a>
-        <a href="/listings/new">Rent your van</a>
-    <% } else {%>
-        <a href="/listings/new">Rent your van</a>
-        <a href="/account/">Account</a>
-    <%  } %> 
-    
-    <a href="/users/logout">Logout</a>
-  <% } else { %> 
-  
-  <a href="/listings/new">Rent your van</a>
-  <a href="/users/register" class="btn btn-primary btn-block mb-2"
-    >Sign up</a>
-  <a href="/users/login"> Login</a>
-  <br>
-  <% } %> 
-  <br>
+<div id="navbar-and-search">
+  <header>
+    <%- include('./partials/header'); %>
+  </header>
 
 <div class="container" id="search_van">
   <form class="container" action="/search" method="GET">
@@ -52,18 +34,22 @@
     </div>
   </form>
 </div>
+</div>
 
-
-<% listings.forEach((listings) => {  %> 
-  <div>
-    <h3><%= listings.model.charAt(0).toUpperCase() + listings.model.slice(1) %> <%= listings.year %></h3>
-    <p><b><%= listings.city %></b></p>
-    <p><%= listings.description %></p>
-    <p><b><%= listings.van_price %>€/day</b></p>
-    <a href="/listings/<%= listings._id %>">More</a>
-    <br>
-  </div>
-  
-<% }) %> 
+<h3>Vans nearby</h3>
+<div id="random-Listings" class="container">
+  <% listings.forEach((listings) => {  %> 
+    <div class="some-listing">
+      <img class="listing-img" src="https://www.findlight.net/front-media/products/images/listing-thumb/__findlight_noimage.jpg" alt="">
+      <h3><%= listings.model.charAt(0).toUpperCase() + listings.model.slice(1) %> <%= listings.year %></h3>
+      <p><b><%= listings.city %></b></p>
+      <p><%= listings.description %></p>
+      <p><b><%= listings.van_price %>€/day</b></p>
+      <a href="/listings/<%= listings._id %>">More</a>
+      <br>
+    </div>
+  <% }) %> 
+</div>
+<%- include('./partials/footer'); %>
 </body>
 </html>
